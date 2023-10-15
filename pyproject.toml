@@ -6,6 +6,8 @@ authors = ["t-yasui <yasutai12@gmail.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.11.3"
+gradio = "3.31.0"
+pydantic = "1.10.7"
 
 [tool.poetry.dev-dependencies]
 
