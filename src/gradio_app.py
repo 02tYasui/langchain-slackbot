@@ -35,4 +35,4 @@ if __name__ == "__main__":
     else:
         auth = None
         
-    demo.launch()
+    demo.launch(auth = auth)
