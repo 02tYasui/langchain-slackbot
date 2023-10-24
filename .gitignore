@@ -158,3 +158,19 @@ cython_debug/
 #  and can be added to the global gitignore or merged into this file.  For a more nuclear
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
+.chroma/index/id_to_uuid_8bbdf3cf-425f-4206-9d99-a92e4cd78ad1.pkl
+.chroma/index/id_to_uuid_084a3d8c-b4cd-47b6-a2b0-0265e5cc8f75.pkl
+.chroma/index/id_to_uuid_87f4829d-b5e2-4072-a927-19fa4c97f96e.pkl
+.chroma/index/id_to_uuid_0391bed1-ad53-4ae0-b1cc-2dea70c42ae9.pkl
+.chroma/index/index_8bbdf3cf-425f-4206-9d99-a92e4cd78ad1.bin
+.chroma/index/index_084a3d8c-b4cd-47b6-a2b0-0265e5cc8f75.bin
+.chroma/index/index_87f4829d-b5e2-4072-a927-19fa4c97f96e.bin
+.chroma/index/index_0391bed1-ad53-4ae0-b1cc-2dea70c42ae9.bin
+.chroma/index/index_metadata_8bbdf3cf-425f-4206-9d99-a92e4cd78ad1.pkl
+.chroma/index/index_metadata_084a3d8c-b4cd-47b6-a2b0-0265e5cc8f75.pkl
+.chroma/index/index_metadata_87f4829d-b5e2-4072-a927-19fa4c97f96e.pkl
+.chroma/index/index_metadata_0391bed1-ad53-4ae0-b1cc-2dea70c42ae9.pkl
+.chroma/index/uuid_to_id_8bbdf3cf-425f-4206-9d99-a92e4cd78ad1.pkl
+.chroma/index/uuid_to_id_084a3d8c-b4cd-47b6-a2b0-0265e5cc8f75.pkl
+.chroma/index/uuid_to_id_87f4829d-b5e2-4072-a927-19fa4c97f96e.pkl
+.chroma/index/uuid_to_id_0391bed1-ad53-4ae0-b1cc-2dea70c42ae9.pkl
