@@ -23,7 +23,7 @@ def create_index() -> VectorStoreIndexWrapper:
 
 def create_tools(index: VectorStoreIndexWrapper) -> List[BaseTool]:
     vectorstore_info =  VectorStoreInfo(
-        name="udemy-langchain source code",
+        name="langchain_source_code",
         description="Source code of application named udemy-langchain",
         vectorstore=index.vectorstore,
     )
@@ -31,7 +31,7 @@ def create_tools(index: VectorStoreIndexWrapper) -> List[BaseTool]:
     return toolkit.get_tools()
 
 def chat(message: str, history: ChatMessageHistory, index: VectorStoreIndexWrapper) -> str:
-    llm = ChatOpenAI(model_name="gpt-4", temperature=0)
+    llm = ChatOpenAI(model_name="gpt-3.5-turbo", temperature=0)
 
     tools = create_tools(index)
 
@@ -40,7 +40,7 @@ def chat(message: str, history: ChatMessageHistory, index: VectorStoreIndexWrapp
     agent_chain = initialize_agent(
         tools,
         llm,
-        agent=AgentType.CHAT_CONVERSATIONAL_REACT_DESCRIPTION,
+        agent=AgentType.OPENAI_FUNCTIONS,
         memory=memory
     )
 
