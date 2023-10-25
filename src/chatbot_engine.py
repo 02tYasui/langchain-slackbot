@@ -31,7 +31,7 @@ def create_tools(index: VectorStoreIndexWrapper) -> List[BaseTool]:
     return toolkit.get_tools()
 
 def chat(message: str, history: ChatMessageHistory, index: VectorStoreIndexWrapper) -> str:
-    llm = ChatOpenAI(model_name="gpt-3.5-turbo", temperature=0)
+    llm = ChatOpenAI(model_name="gpt-4", temperature=0)
 
     tools = create_tools(index)
 
