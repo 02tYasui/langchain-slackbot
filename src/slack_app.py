@@ -1,11 +1,9 @@
 import os
 from slack_bolt import App
 from slack_bolt.adapter.socket_mode import SocketModeHandler
-from dotenv import load_dotenv
 from chatbot_engine import chat, create_index
 from langchain.memory import ChatMessageHistory
 
-load_dotenv()
 
 index = create_index()
 
