@@ -1,6 +1,6 @@
 ![GitHub stars](https://img.shields.io/github/stars/02tYasui/langchain-slackbot.svg)
 ![Contributors](https://img.shields.io/github/contributors/02tYasui/langchain-slackbot)
-![License](https://img.shields.io/github/license/02tYasui/langchain-slackbot)
+![GitHub License](https://img.shields.io/github/license/02tyasui/langchain-slackbot)
 
 
 # langchain-slackbot
