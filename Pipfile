@@ -6,6 +6,10 @@ name = "pypi"
 [packages]
 langchain = "*"
 slack-bolt = "*"
+langchain-openai = "*"
+langchain-chroma = "*"
+unstructured = "*"
+langchain-community = "*"
 
 [dev-packages]
 

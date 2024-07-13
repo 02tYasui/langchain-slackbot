@@ -1,5 +1,5 @@
 services:
-  web:
+  slack_app:
     build: .
     ports:
       - "8000:8000"
@@ -7,3 +7,7 @@ services:
       - .:/app
     environment:
       - PYTHONUNBUFFERED=1
+      - APP_ENV
+      - SLACK_APP_TOKEN
+      - SLACK_BOT_TOKEN
+      - OPENAI_API_KEY
