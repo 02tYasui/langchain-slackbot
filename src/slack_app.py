@@ -14,12 +14,12 @@ def fetch_history(event: dict) -> ChatMessageHistory:
     bot_user_id = app.client.auth_test()["user_id"]
     # スレッド内メッセージ取得
     sorted_replies = []
-    if 'thread_ts' in event:
+    if "thread_ts" in event:
         replies = app.client.conversations_replies(
             channel=event["channel"], ts=event["thread_ts"], inclusive=True
         )
         sorted_replies = sorted(replies["messages"], key=lambda x: x["ts"])
-        
+
     history = ChatMessageHistory()
 
     for message in reversed(sorted_replies):
@@ -35,7 +35,6 @@ def fetch_history(event: dict) -> ChatMessageHistory:
 
 @app.event("app_mention")
 def handle_mention(event, say):
-    thread_ts = event["thread_ts"] if "thread_ts" in event else ""
     try:
         thread_history = fetch_history(event)
         bot_message = chat(event["text"], thread_history, index)
@@ -46,9 +45,4 @@ def handle_mention(event, say):
 
 # アプリを起動します
 if __name__ == "__main__":
-    app_env = os.environ.get("APP_ENV")
-
-    if app_env == "production":
-        app.start(port=int(os.environ.get("PORT", 3000)))
-    else:
-        SocketModeHandler(app, os.environ.get("SLACK_APP_TOKEN")).start()
+    SocketModeHandler(app, os.environ.get("SLACK_APP_TOKEN")).start()
