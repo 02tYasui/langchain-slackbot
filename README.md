@@ -37,14 +37,19 @@ git clone https://github.com/02tYasui/langchain-slackbot.git
 cd langchain-slackbot
 ```
 
-4. Install the project dependencies using pipenv:
+3. Install the project dependencies using pipenv:
 ```bash
 pipenv install
 ```
 
-5. Activate the pipenv shell:
+4. Activate the pipenv shell:
 ```bash
 pipenv shell
+```
+
+5. Run slack_app:
+```bash
+python src/python_app.py
 ```
 
 ### Using Docker
