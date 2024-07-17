@@ -1,12 +1,30 @@
 services:
   slack_app:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports:
       - "8000:8000"
-    volumes:
-      - .:/app
     environment:
       - PYTHONUNBUFFERED=1
       - SLACK_APP_TOKEN
       - SLACK_BOT_TOKEN
       - OPENAI_API_KEY
+      - LANGCHAIN_TRACING_V2
+      - LANGCHAIN_API_KEY
+  
+  api_main:
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    ports:
+      - "70:70"
+    environment:
+      - PYTHONUNBUFFERED=1
+      - SLACK_APP_TOKEN
+      - SLACK_BOT_TOKEN
+      - OPENAI_API_KEY
+      - LANGCHAIN_TRACING_V2
+      - LANGCHAIN_API_KEY
+      - LANGCHAIN_ENDPOINT
+      - LANGCHAIN_PROJECT

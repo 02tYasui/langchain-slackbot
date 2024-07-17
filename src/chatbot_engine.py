@@ -17,7 +17,9 @@ from langchain.agents import initialize_agent, AgentType
 from langchain_chroma import Chroma
 from langchain_openai import OpenAIEmbeddings
 from langchain.text_splitter import CharacterTextSplitter
+from langsmith import Client
 
+client = Client()
 
 langchain.verbose = True
 
