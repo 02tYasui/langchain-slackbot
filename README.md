@@ -16,6 +16,14 @@
 
 2. Slack Bot Configuration: This SlackBot operates in socket mode. Ensure that your Slack App is configured to use socket mode in the Slack API dashboard. When generating your `SLACK_APP_TOKEN`, make sure to select the socket mode option.
 
+## Features
+
+This SlackBot leverages the OpenAI API to maintain a history for each thread, offering a seamless integration for users to interact with AI within Slack. Key features include:
+
+- **Thread History Management**: Automatically keeps track of all interactions within a Slack thread, allowing for context-aware responses from the AI.
+- **OpenAI API Integration**: Utilizes the powerful capabilities of OpenAI's API to generate responses, ensuring high-quality and relevant content.
+- **Easy Configuration**: Simple setup process with environment variables for quick integration into any Slack workspace.
+
 ## Installation
 
 This project can be installed directly from GitHub. 
