@@ -23,11 +23,13 @@ This SlackBot leverages the OpenAI API to maintain a history for each thread, of
 - **Thread History Management**: Automatically keeps track of all interactions within a Slack thread, allowing for context-aware responses from the AI.
 - **OpenAI API Integration**: Utilizes the powerful capabilities of OpenAI's API to generate responses, ensuring high-quality and relevant content.
 - **Easy Configuration**: Simple setup process with environment variables for quick integration into any Slack workspace.
+- **Response to Slack mentions**: When a user mentions the Bot, it automatically responds and performs the corresponding action. This makes it easy for team members to directly ask questions to the Bot or request specific tasks.
+  To enable this feature, configure the Bot in the Slack API dashboard and add the appropriate event subscriptions to detect mentions.
 
 ## Installation
 
 This project can be installed directly from GitHub. 
-There are two main methods for installation: using pipenv (recommended for development) or using Docker (recommended for deployment).
+There are two main methods for installation: using pipenv or using Docker (recommended).
 
 Create a `.env` file in the root directory of the project and add the following environment variables:
 ```Dotenv
