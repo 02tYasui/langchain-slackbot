@@ -25,7 +25,13 @@ Create a `.env` file in the root directory of the project and add the following 
 ```Dotenv
 SLACK_APP_TOKEN=your_slack_app_token
 SLACK_BOT_TOKEN=your_slack_bot_token
+SLACK_BOT_ID=your_slack_bot_id
 OPENAI_API_KEY=your_openai_api_key
+
+LANGCHAIN_TRACING_V2 = true
+LANGCHAIN_API_KEY = langsmith_api_key
+LANGCHAIN_PROJECT = "your-project-name"
+LANGCHAIN_ENDPOINT = "https://api.smith.langchain.com"
 ```
 
 ### Using pipenv
