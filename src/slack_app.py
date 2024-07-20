@@ -1,22 +1,30 @@
 import os
 import re
-import json
 from slack_bolt import App
 from slack_bolt.adapter.socket_mode import SocketModeHandler
-from langchain_core.messages import AIMessage
 from langserve import RemoteRunnable
-
 
 app = App(token=os.environ.get("SLACK_BOT_TOKEN"))
 slack_chat = RemoteRunnable("http://host.docker.internal:70/slack/")
 
 
 def handle_mention(event, say):
+    """メンション時"""
     session_id = event["thread_ts"] if "thread_ts" in event else ""
-    message = re.sub(r"<@U[A-Z0-9]+>", "", event["text"])
-    message = re.sub(r"\s+", " ", message).strip()
+    message = get_raw_message(event["text"])
+
+    # 履歴保持用のセッションIDとチャンネルIDを設定
+    config = {
+        "session_id": session_id,
+        "channel_id": event["channel"],
+        "ts": event["ts"],
+    }
+
     try:
-        content = slack_chat.invoke({"user_input": message}, {"session_id": session_id})
+        # API呼び出し
+        content = slack_chat.invoke(
+            {"user_input": message}, config={"configurable": config}
+        )
         say(content, thread_ts=event["ts"])
     except Exception as e:
         say(f"ERROR: {e}", thread_ts=event["ts"])
@@ -24,6 +32,13 @@ def handle_mention(event, say):
 
 def just_ack(ack):
     ack()
+
+
+def get_raw_message(message):
+    """メンション部削除"""
+    raw_message = re.sub(r"<@U[A-Z0-9]+>", "", message)
+    raw_message = re.sub(r"\s+", " ", raw_message).strip()
+    return raw_message
 
 
 app.event("app_mention")(ack=just_ack, lazy=[handle_mention])
