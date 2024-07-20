@@ -8,6 +8,6 @@ COPY Pipfile Pipfile.lock* ./
 
 RUN pipenv install --system
 
-COPY . .
+COPY src .
 
-CMD ["python", "src/slack_app.py"]
+CMD ["python", "slack_app.py"]

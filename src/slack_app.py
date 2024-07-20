@@ -1,48 +1,32 @@
 import os
+import re
+import json
 from slack_bolt import App
 from slack_bolt.adapter.socket_mode import SocketModeHandler
-from chatbot_engine import chat, create_index
-from langchain_community.chat_message_histories import ChatMessageHistory
+from langchain_core.messages import AIMessage
+from langserve import RemoteRunnable
 
-index = create_index()
 
-# ボットトークンとソケットモードハンドラーを使ってアプリを初期化します
 app = App(token=os.environ.get("SLACK_BOT_TOKEN"))
+slack_chat = RemoteRunnable("http://host.docker.internal:70/slack/")
 
 
-def fetch_history(event: dict) -> ChatMessageHistory:
-    bot_user_id = app.client.auth_test()["user_id"]
-    # スレッド内メッセージ取得
-    sorted_replies = []
-    if "thread_ts" in event:
-        replies = app.client.conversations_replies(
-            channel=event["channel"], ts=event["thread_ts"], inclusive=True
-        )
-        sorted_replies = sorted(replies["messages"], key=lambda x: x["ts"])
-
-    history = ChatMessageHistory()
-
-    for message in reversed(sorted_replies):
-        text = message["text"]
-
-        if message["user"] == bot_user_id:
-            history.add_ai_message(text)
-        else:
-            history.add_user_message(text)
-
-    return history
-
-
-@app.event("app_mention")
 def handle_mention(event, say):
+    session_id = event["thread_ts"] if "thread_ts" in event else ""
+    message = re.sub(r"<@U[A-Z0-9]+>", "", event["text"])
+    message = re.sub(r"\s+", " ", message).strip()
     try:
-        thread_history = fetch_history(event)
-        bot_message = chat(event["text"], thread_history, index)
-        say(bot_message, thread_ts=event["ts"])
+        content = slack_chat.invoke({"user_input": message}, {"session_id": session_id})
+        say(content, thread_ts=event["ts"])
     except Exception as e:
         say(f"ERROR: {e}", thread_ts=event["ts"])
 
 
-# アプリを起動します
+def just_ack(ack):
+    ack()
+
+
+app.event("app_mention")(ack=just_ack, lazy=[handle_mention])
+
 if __name__ == "__main__":
     SocketModeHandler(app, os.environ.get("SLACK_APP_TOKEN")).start()

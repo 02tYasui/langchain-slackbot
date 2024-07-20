@@ -12,7 +12,9 @@ services:
       - OPENAI_API_KEY
       - LANGCHAIN_TRACING_V2
       - LANGCHAIN_API_KEY
-  
+    networks:
+      - langchain_network
+
   api_main:
     build:
       context: .
@@ -28,3 +30,9 @@ services:
       - LANGCHAIN_API_KEY
       - LANGCHAIN_ENDPOINT
       - LANGCHAIN_PROJECT
+    networks:
+      - langchain_network
+
+networks:
+  langchain_network:
+    driver: bridge
