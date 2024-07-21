@@ -31,6 +31,6 @@ async def root():
 
 add_routes(
     app,
-    ai_engine.chat_with_hisotry(),
+    ai_engine.chat_with_history(),
     path="/slack",
 )

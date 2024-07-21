@@ -63,7 +63,7 @@ def _get_all_thread(self, channel_id: str, thread_ts: str):
                 )
 
 
-def chat_with_hisotry():
+def chat_with_history():
     """履歴保持チャット"""
     prompt = ChatPromptTemplate.from_messages(
         [
