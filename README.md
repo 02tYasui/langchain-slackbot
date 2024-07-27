@@ -3,84 +3,101 @@
 ![GitHub License](https://img.shields.io/github/license/02tyasui/langchain-slackbot)
 
 
-# langchain-slackbot
+# LangChain SlackBot
 [![Python](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white)](https://www.python.org/)
 [![LangChain](https://img.shields.io/badge/LangChain-121112?logo=chainlink&logoColor=white)](https://langchain.com/)
 [![Docker](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=white)](https://www.docker.com/)
 [![OpenAI](https://img.shields.io/badge/OpenAI-412991?logo=openai&logoColor=white)](https://openai.com/)
 [![Slack](https://img.shields.io/badge/Slack-4A154B?logo=slack&logoColor=white)](https://slack.com/)
 
-### Important Notes
+## 重要な注意事項
 
-1. Security: Never commit your `.env` file to version control. Make sure it's listed in your `.gitignore` file to prevent accidentally exposing sensitive information.
+1. セキュリティ: `.env` ファイルをバージョン管理にコミットしないでください。誤って機密情報を公開することを防ぐために、`.gitignore` ファイルにリストされていることを確認してください。
 
-2. Slack Bot Configuration: This SlackBot operates in socket mode. Ensure that your Slack App is configured to use socket mode in the Slack API dashboard. When generating your `SLACK_APP_TOKEN`, make sure to select the socket mode option.
+2. Slack Bot の設定: この SlackBot はソケットモードで動作します。Slack API ダッシュボードでソケットモードを使用するように Slack アプリが設定されていることを確認してください。`SLACK_APP_TOKEN` を生成する際には、ソケットモードのオプションを選択してください。
 
-## Features
+## 機能
 
-This SlackBot leverages the OpenAI API to maintain a history for each thread, offering a seamless integration for users to interact with AI within Slack. Key features include:
+この SlackBot は OpenAI API を活用して各スレッドの履歴を管理し、Slack 内で AI とのシームレスな連携を提供します。主な機能は以下の通りです:
 
-- **Thread History Management**: Automatically keeps track of all interactions within a Slack thread, allowing for context-aware responses from the AI.
-- **OpenAI API Integration**: Utilizes the powerful capabilities of OpenAI's API to generate responses, ensuring high-quality and relevant content.
-- **Easy Configuration**: Simple setup process with environment variables for quick integration into any Slack workspace.
-- **Response to Slack mentions**: When a user mentions the Bot, it automatically responds and performs the corresponding action. This makes it easy for team members to directly ask questions to the Bot or request specific tasks.
-  To enable this feature, configure the Bot in the Slack API dashboard and add the appropriate event subscriptions to detect mentions.
+- **スレッド履歴の管理**: Slack スレッド内のすべてのやり取りを自動的に追跡し、AI によるコンテキストに応じた応答を可能にします。
+- **OpenAI API の統合**: OpenAI の強力な機能を活用して応答を生成し、高品質かつ関連性のあるコンテンツを提供します。
+- **簡単な設定**: 環境変数を使用した簡単なセットアッププロセスで、どの Slack ワークスペースにも迅速に統合できます。
+- **Slack メンションへの応答**: ユーザーがボットをメンションすると、自動的に応答して対応するアクションを実行します。これにより、チームメンバーはボットに直接質問をしたり特定のタスクをリクエストしたりすることが容易になります。
+  この機能を有効にするには、Slack API ダッシュボードでボットを設定し、適切なイベントサブスクリプションを追加してメンションを検出します。
 
-## Installation
-
-This project can be installed directly from GitHub. 
-There are two main methods for installation: using pipenv or using Docker (recommended).
-
-Create a `.env` file in the root directory of the project and add the following environment variables:
-```Dotenv
-SLACK_APP_TOKEN=your_slack_app_token
-SLACK_BOT_TOKEN=your_slack_bot_token
-SLACK_BOT_ID=your_slack_bot_id
-OPENAI_API_KEY=your_openai_api_key
-
-LANGCHAIN_TRACING_V2 = true
-LANGCHAIN_API_KEY = langsmith_api_key
-LANGCHAIN_PROJECT = "your-project-name"
-LANGCHAIN_ENDPOINT = "https://api.smith.langchain.com"
+## Slack設定
+#### OAuth Scope
+```text
+app_mentions:read
+chat:write
+im:history
+im:read
+im:write
 ```
 
-### Using pipenv
-1. Ensure you have pipenv installed. If not, install it using `pip install pipenv`
+#### Event Subscriptions
+```text
+app_mention
+app_mentions:read
+message.im
+```
 
-2. Clone the repository:
+## 実行
+
+実行方法は2つ: pipenv or Docker(推奨)
+
+プロジェクトのルートディレクトリに `.env` ファイルを作成し、次の環境変数を追加してください:
+`.env.dev`を参考にしてください。
+```Dotenv
+# OpenaAI API
+OPENAI_API_KEY = your_openai_api_key
+
+# Slack
+SLACK_APP_TOKEN = your_slack_app_token
+SLACK_BOT_TOKEN = your_slack_bot_token
+SLACK_BOT_ID = your_slack_bot_id
+
+# Langsmith
+LANGCHAIN_TRACING_V2 = true
+LANGCHAIN_API_KEY = your_langsmith_api_key
+LANGCHAIN_PROJECT = your_project_name
+LANGCHAIN_ENDPOINT = https://api.smith.langchain.com
+```
+
+## Using pipenv
+1. `pip install pipenv` でpipenvをインストール
+
+2. リポジトリをクローン
 ```bash
 git clone https://github.com/02tYasui/langchain-slackbot.git
 cd langchain-slackbot
 ```
 
-3. Install the project dependencies using pipenv:
+1. pipenvを使用してプロジェクトの依存関係をインストール
 ```bash
 pipenv install
 ```
 
-4. Activate the pipenv shell:
+1. pipenv環境をアクティベート
 ```bash
 pipenv shell
 ```
 
-5. Run slack_app:
+1. slack_app を実行
 ```bash
 python src/python_app.py
 ```
 
 ### Using Docker
 
-If you have Docker installed, you can run this project in a Docker container:
-
-1. Clone the repository:
+1. RepositoryをClone
 ```bash
 git clone https://github.com/02tYasui/langchain-slackbot.git
 cd langchain-slackbot
 ```
 
-
-
-2. Build and RUN the Docker container:
+1. DockerコンテナをBuildして実行
 ```bash
 docker compose up --build
 ```
