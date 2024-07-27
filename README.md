@@ -51,6 +51,7 @@ message.im
 `.env.dev`を参考にしてください。
 ```Dotenv
 # OpenaAI API
+MODEL_NAME = gpt-4o-mini
 OPENAI_API_KEY = your_openai_api_key
 
 # Slack
@@ -63,6 +64,9 @@ LANGCHAIN_TRACING_V2 = true
 LANGCHAIN_API_KEY = your_langsmith_api_key
 LANGCHAIN_PROJECT = your_project_name
 LANGCHAIN_ENDPOINT = https://api.smith.langchain.com
+
+# DynamoDB
+DYNAMODB_TABLE_NAME = your_dynamodb_table_name
 ```
 
 ## Using pipenv
