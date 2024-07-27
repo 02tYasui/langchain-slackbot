@@ -1,3 +1,4 @@
+import os
 from langchain_openai import ChatOpenAI
 from langchain_core.chat_history import (
     BaseChatMessageHistory,
@@ -7,14 +8,12 @@ from langchain_core.output_parsers import StrOutputParser
 from langchain_core.runnables.history import RunnableWithMessageHistory
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 
-MODEL_NAME = "gpt-4o-mini"
-
 store = {}
 
 
 def chat_with_history():
     """履歴保持チャット"""
-    model = ChatOpenAI(model=MODEL_NAME, temperature=0)
+    model = ChatOpenAI(model=os.environ.get("MODEL_NAME"), temperature=0)
 
     prompt = ChatPromptTemplate.from_messages(
         [
