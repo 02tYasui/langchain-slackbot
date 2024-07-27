@@ -50,6 +50,7 @@ Create a `.env` file in the project's root directory and add the following envir
 Refer to `.env.dev` for reference.
 ```Dotenv
 # OpenaAI API
+MODEL_NAME = gpt-4o-mini
 OPENAI_API_KEY = your_openai_api_key
 
 # Slack
