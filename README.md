@@ -74,17 +74,17 @@ git clone https://github.com/02tYasui/langchain-slackbot.git
 cd langchain-slackbot
 ```
 
-1. pipenvを使用してプロジェクトの依存関係をインストール
+3. pipenvを使用してプロジェクトの依存関係をインストール
 ```bash
 pipenv install
 ```
 
-1. pipenv環境をアクティベート
+4. pipenv環境をアクティベート
 ```bash
 pipenv shell
 ```
 
-1. slack_app を実行
+5. slack_app を実行
 ```bash
 python src/python_app.py
 ```
@@ -97,7 +97,7 @@ git clone https://github.com/02tYasui/langchain-slackbot.git
 cd langchain-slackbot
 ```
 
-1. DockerコンテナをBuildして実行
+2. DockerコンテナをBuildして実行
 ```bash
 docker compose up --build
 ```
