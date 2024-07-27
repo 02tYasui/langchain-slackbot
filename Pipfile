@@ -11,8 +11,8 @@ langchain-chroma = "*"
 unstructured = "*"
 langchain-community = "*"
 langsmith = "*"
-langserve = {extras = ["all"], version = "*"}
-pydantic = "==1.10.13"
+langchain-experimental = "*"
+duckduckgo-search = "*"
 
 [dev-packages]
 
