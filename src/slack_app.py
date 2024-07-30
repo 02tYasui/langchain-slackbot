@@ -30,8 +30,8 @@ def handle_mention(logger, event, say):
         content = lm.chat_with_history().invoke(
             {"user_input": message}, config={"configurable": config}
         )
-        logger.info(f"Response:{content}")
-        say(content, thread_ts=event["ts"])
+        logger.info(f"Response:{content['output']}")
+        say(content['output'], thread_ts=event["ts"])
     except Exception as e:
         logger.error(f"{e}")
         say(f"ERROR: {e}", thread_ts=event["ts"])
