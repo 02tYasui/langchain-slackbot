@@ -17,6 +17,7 @@ import langchain_vector
 
 store = {}
 
+# test
 
 def chat_with_history():
     """履歴保持チャット"""
