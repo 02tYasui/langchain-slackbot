@@ -10,14 +10,10 @@ from langchain.agents import (
     AgentExecutor,
     create_tool_calling_agent,
 )
-from langchain_community.tools import DuckDuckGoSearchRun
-from langchain_community.tools.yahoo_finance_news import YahooFinanceNewsTool
 
-import langchain_vector
+from langchain_tools import all_tools
 
 store = {}
-
-# test
 
 def chat_with_history():
     """履歴保持チャット"""
@@ -32,14 +28,8 @@ def chat_with_history():
         ]
     )
 
-    tools = [
-        DuckDuckGoSearchRun(),
-        YahooFinanceNewsTool(),
-        langchain_vector.vector_to_tool(),
-    ]
-
-    agent = create_tool_calling_agent(model, tools, prompt)
-    agent_executor = AgentExecutor(agent=agent, tools=tools)
+    agent = create_tool_calling_agent(model, all_tools, prompt)
+    agent_executor = AgentExecutor(agent=agent, tools=all_tools)
 
     runnable_agent = RunnableWithMessageHistory(
         runnable=agent_executor,
